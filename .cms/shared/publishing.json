@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "sourceSync": null,
+  "publishTarget": {
+    "provider": "github",
+    "config": {
+      "repositoryUrl": "git@github.com:valentinwinkelmann/sholes-testpage.git",
+      "publishMode": "actions",
+      "branch": "main",
+      "artifactBranch": "gh-pages"
+    },
+    "credentialId": null
+  }
+}
