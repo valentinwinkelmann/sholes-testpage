@@ -63,13 +63,13 @@ This content lives in the WebC default slot, so it remains ordinary **Markdown**
 
 <div class="sh-row">
 
-<div class="sh-col" style="--sh-basis:51.9%">
+<div class="sh-col" style="--sh-basis:32.5%">
 
 <img src="/assets/media/IMG_8245.jpeg" alt="IMG_8245" style="border-top-left-radius:25px;border-top-right-radius:25px;border-bottom-right-radius:15px;border-bottom-left-radius:15px;border-bottom-color:rgba(0,0,0,1);border-bottom-width:5px;border-left-color:rgba(0,0,0,1);border-right-color:rgba(0,0,0,1);border-top-color:rgba(49,49,49,1);border-left-width:2px;border-right-width:2px;border-top-width:2px;box-shadow:0px 5px 15px rgba(70,54,54,1)">
 
 </div>
 
-<div class="sh-col" style="--sh-basis:48.1%;--sh-align-self:center">
+<div class="sh-col" style="--sh-basis:67.5%;--sh-align-self:center">
 
 ## New heading
 
