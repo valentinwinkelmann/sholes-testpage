@@ -30,6 +30,8 @@ jobs:
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
       - name: Build Eleventy site
         run: npm run build
+      - name: Rebase site for GitHub Pages
+        run: node .github/sholes-pages-base.cjs "/sholes-testpage/" _site
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
