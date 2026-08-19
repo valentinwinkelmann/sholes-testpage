@@ -11,7 +11,7 @@ description: Minimal content for testing the Markdown block editor.
 
 # Wellcome to {{ site.name }}...
 
-The design is intentionally plain. The point is to make structure, drag and drop, text editing and flex layout obvious while the Markdown stays readable.
+This is only a testpage for something big im currently working on.
 
 </div>
 
