@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title or site.name }}</title>
+  <meta name="description" content="{{ description or seo.description }}">
+  <script>
+    (() => { const value = new URLSearchParams(location.search).get('__cmsTheme'); if (value === 'dark' || value === 'light') document.documentElement.dataset.cmsTheme = value; })();
+  </script>
+  <link rel="stylesheet" href="/assets/sholes-layout.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">{{ site.name }}</a>
+    <nav><a href="/">Home</a><a href="/about/">About</a></nav>
+  </header>
+  <main>{{ content | safe }}</main>
+  <footer class="site-footer">Built from Markdown blocks.</footer>
+</body>
+</html>

@@ -1,0 +1,321 @@
+/* Sholes layout primitives -------------------------------------------------
+   Structural only. Responsive instance values live in --sh-* custom
+   properties; breakpoint behavior lives here and requires no JavaScript. */
+
+/* Sholes instance boundaries ------------------------------------------------
+   CSS custom properties inherit by default, while margin/padding/flex sizing
+   do not. Reset editor-owned layout variables on every consuming node so a
+   parent's instance values can never bleed into nested rows/columns/blocks.
+   Typography variables are intentionally NOT reset because typography is
+   allowed to inherit through the document tree. */
+:is(.sh-container, .layout-container, .sh-row, .layout-row, .sh-col, .layout-column, .sh-responsive-box) {
+  --sh-margin-top: initial;
+  --sh-margin-top-tablet: initial;
+  --sh-margin-top-mobile: initial;
+  --sh-margin-right: initial;
+  --sh-margin-right-tablet: initial;
+  --sh-margin-right-mobile: initial;
+  --sh-margin-bottom: initial;
+  --sh-margin-bottom-tablet: initial;
+  --sh-margin-bottom-mobile: initial;
+  --sh-margin-left: initial;
+  --sh-margin-left-tablet: initial;
+  --sh-margin-left-mobile: initial;
+  --sh-padding-top: initial;
+  --sh-padding-top-tablet: initial;
+  --sh-padding-top-mobile: initial;
+  --sh-padding-right: initial;
+  --sh-padding-right-tablet: initial;
+  --sh-padding-right-mobile: initial;
+  --sh-padding-bottom: initial;
+  --sh-padding-bottom-tablet: initial;
+  --sh-padding-bottom-mobile: initial;
+  --sh-padding-left: initial;
+  --sh-padding-left-tablet: initial;
+  --sh-padding-left-mobile: initial;
+}
+
+:is(.sh-container, .layout-container) {
+  --sh-container-max-width: initial;
+  --sh-container-max-width-tablet: initial;
+  --sh-container-max-width-mobile: initial;
+}
+
+:is(.sh-row, .layout-row) {
+  --sh-row-max-width: initial;
+  --sh-row-max-width-tablet: initial;
+  --sh-row-max-width-mobile: initial;
+  --sh-gap: initial;
+  --sh-gap-tablet: initial;
+  --sh-gap-mobile: initial;
+  --sh-row-gap: initial;
+  --sh-row-gap-tablet: initial;
+  --sh-row-gap-mobile: initial;
+  --sh-column-gap: initial;
+  --sh-column-gap-tablet: initial;
+  --sh-column-gap-mobile: initial;
+  --sh-direction: initial;
+  --sh-direction-tablet: initial;
+  --sh-direction-mobile: initial;
+  --sh-wrap: initial;
+  --sh-wrap-tablet: initial;
+  --sh-wrap-mobile: initial;
+  --sh-justify: initial;
+  --sh-justify-tablet: initial;
+  --sh-justify-mobile: initial;
+  --sh-align-items: initial;
+  --sh-align-items-tablet: initial;
+  --sh-align-items-mobile: initial;
+  --sh-align-content: initial;
+  --sh-align-content-tablet: initial;
+  --sh-align-content-mobile: initial;
+}
+
+:is(.sh-col, .layout-column) {
+  --sh-basis: initial;
+  --sh-basis-tablet: initial;
+  --sh-basis-mobile: initial;
+  --sh-grow: initial;
+  --sh-grow-tablet: initial;
+  --sh-grow-mobile: initial;
+  --sh-shrink: initial;
+  --sh-shrink-tablet: initial;
+  --sh-shrink-mobile: initial;
+  --sh-order: initial;
+  --sh-order-tablet: initial;
+  --sh-order-mobile: initial;
+  --sh-align-self: initial;
+  --sh-align-self-tablet: initial;
+  --sh-align-self-mobile: initial;
+}
+
+.sh-container,
+.layout-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--sh-container-max-width, var(--sh-site-max-width, 1200px));
+  margin-top: var(--sh-margin-top, 0);
+  margin-right: var(--sh-margin-right, auto);
+  margin-bottom: var(--sh-margin-bottom, 0);
+  margin-left: var(--sh-margin-left, auto);
+  padding-top: var(--sh-padding-top, 0);
+  padding-right: var(--sh-padding-right, 0);
+  padding-bottom: var(--sh-padding-bottom, 0);
+  padding-left: var(--sh-padding-left, 0);
+}
+
+.sh-row,
+.layout-row {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  max-width: var(--sh-row-max-width, var(--sh-site-max-width, 1200px));
+  min-width: 0;
+  flex-direction: var(--sh-direction, row);
+  flex-wrap: var(--sh-wrap, nowrap);
+  gap: var(--sh-gap, 24px);
+  row-gap: var(--sh-row-gap, var(--sh-gap, 24px));
+  column-gap: var(--sh-column-gap, var(--sh-gap, 24px));
+  justify-content: var(--sh-justify, flex-start);
+  align-items: var(--sh-align-items, stretch);
+  align-content: var(--sh-align-content, normal);
+  margin-top: var(--sh-margin-top, 0);
+  margin-right: var(--sh-margin-right, auto);
+  margin-bottom: var(--sh-margin-bottom, 0);
+  margin-left: var(--sh-margin-left, auto);
+  padding-top: var(--sh-padding-top, 0);
+  padding-right: var(--sh-padding-right, 0);
+  padding-bottom: var(--sh-padding-bottom, 0);
+  padding-left: var(--sh-padding-left, 0);
+}
+
+.sh-col,
+.layout-column {
+  box-sizing: border-box;
+  min-width: 0;
+  width: auto;
+  flex-basis: var(--sh-basis, auto);
+  flex-grow: var(--sh-grow, 0);
+  flex-shrink: var(--sh-shrink, 1);
+  order: var(--sh-order, 0);
+  align-self: var(--sh-align-self, auto);
+  margin-top: var(--sh-margin-top, 0);
+  margin-right: var(--sh-margin-right, 0);
+  margin-bottom: var(--sh-margin-bottom, 0);
+  margin-left: var(--sh-margin-left, 0);
+  padding-top: var(--sh-padding-top, 0);
+  padding-right: var(--sh-padding-right, 0);
+  padding-bottom: var(--sh-padding-bottom, 0);
+  padding-left: var(--sh-padding-left, 0);
+}
+
+.sh-responsive-text {
+  font-size: var(--sh-font-size);
+  line-height: var(--sh-line-height);
+  text-align: var(--sh-text-align);
+}
+
+/* Generic responsive box ownership for Markdown/media/components. Unset
+   variables intentionally invalidate these declarations so project/theme CSS
+   remains the source of truth until the editor writes an override. */
+.sh-responsive-box {
+  margin-top: var(--sh-margin-top);
+  margin-right: var(--sh-margin-right);
+  margin-bottom: var(--sh-margin-bottom);
+  margin-left: var(--sh-margin-left);
+  padding-top: var(--sh-padding-top);
+  padding-right: var(--sh-padding-right);
+  padding-bottom: var(--sh-padding-bottom);
+  padding-left: var(--sh-padding-left);
+}
+
+/* Exact-device visibility. Absence means the element remains in normal flow. */
+@media (min-width: 961px) {
+  .sh-hide-desktop { display: none !important; }
+}
+
+@media (max-width: 960px) {
+  .sh-container,
+  .layout-container {
+    max-width: var(--sh-container-max-width-tablet, var(--sh-container-max-width, var(--sh-site-max-width, 1200px)));
+    margin-top: var(--sh-margin-top-tablet, var(--sh-margin-top, 0));
+    margin-right: var(--sh-margin-right-tablet, var(--sh-margin-right, auto));
+    margin-bottom: var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0));
+    margin-left: var(--sh-margin-left-tablet, var(--sh-margin-left, auto));
+    padding-top: var(--sh-padding-top-tablet, var(--sh-padding-top, 0));
+    padding-right: var(--sh-padding-right-tablet, var(--sh-padding-right, 0));
+    padding-bottom: var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0));
+    padding-left: var(--sh-padding-left-tablet, var(--sh-padding-left, 0));
+  }
+
+  .sh-row,
+  .layout-row {
+    max-width: var(--sh-row-max-width-tablet, var(--sh-row-max-width, var(--sh-site-max-width, 1200px)));
+    flex-direction: var(--sh-direction-tablet, var(--sh-direction, row));
+    flex-wrap: var(--sh-wrap-tablet, var(--sh-wrap, nowrap));
+    gap: var(--sh-gap-tablet, var(--sh-gap, 24px));
+    row-gap: var(--sh-row-gap-tablet, var(--sh-row-gap, var(--sh-gap-tablet, var(--sh-gap, 24px))));
+    column-gap: var(--sh-column-gap-tablet, var(--sh-column-gap, var(--sh-gap-tablet, var(--sh-gap, 24px))));
+    justify-content: var(--sh-justify-tablet, var(--sh-justify, flex-start));
+    align-items: var(--sh-align-items-tablet, var(--sh-align-items, stretch));
+    align-content: var(--sh-align-content-tablet, var(--sh-align-content, normal));
+    margin-top: var(--sh-margin-top-tablet, var(--sh-margin-top, 0));
+    margin-right: var(--sh-margin-right-tablet, var(--sh-margin-right, auto));
+    margin-bottom: var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0));
+    margin-left: var(--sh-margin-left-tablet, var(--sh-margin-left, auto));
+    padding-top: var(--sh-padding-top-tablet, var(--sh-padding-top, 0));
+    padding-right: var(--sh-padding-right-tablet, var(--sh-padding-right, 0));
+    padding-bottom: var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0));
+    padding-left: var(--sh-padding-left-tablet, var(--sh-padding-left, 0));
+  }
+
+  .sh-col,
+  .layout-column {
+    flex-basis: var(--sh-basis-tablet, var(--sh-basis, auto));
+    flex-grow: var(--sh-grow-tablet, var(--sh-grow, 0));
+    flex-shrink: var(--sh-shrink-tablet, var(--sh-shrink, 1));
+    order: var(--sh-order-tablet, var(--sh-order, 0));
+    align-self: var(--sh-align-self-tablet, var(--sh-align-self, auto));
+    margin-top: var(--sh-margin-top-tablet, var(--sh-margin-top, 0));
+    margin-right: var(--sh-margin-right-tablet, var(--sh-margin-right, 0));
+    margin-bottom: var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0));
+    margin-left: var(--sh-margin-left-tablet, var(--sh-margin-left, 0));
+    padding-top: var(--sh-padding-top-tablet, var(--sh-padding-top, 0));
+    padding-right: var(--sh-padding-right-tablet, var(--sh-padding-right, 0));
+    padding-bottom: var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0));
+    padding-left: var(--sh-padding-left-tablet, var(--sh-padding-left, 0));
+  }
+
+  .sh-responsive-text {
+    font-size: var(--sh-font-size-tablet, var(--sh-font-size));
+    line-height: var(--sh-line-height-tablet, var(--sh-line-height));
+    text-align: var(--sh-text-align-tablet, var(--sh-text-align));
+  }
+
+  .sh-responsive-box {
+    margin-top: var(--sh-margin-top-tablet, var(--sh-margin-top));
+    margin-right: var(--sh-margin-right-tablet, var(--sh-margin-right));
+    margin-bottom: var(--sh-margin-bottom-tablet, var(--sh-margin-bottom));
+    margin-left: var(--sh-margin-left-tablet, var(--sh-margin-left));
+    padding-top: var(--sh-padding-top-tablet, var(--sh-padding-top));
+    padding-right: var(--sh-padding-right-tablet, var(--sh-padding-right));
+    padding-bottom: var(--sh-padding-bottom-tablet, var(--sh-padding-bottom));
+    padding-left: var(--sh-padding-left-tablet, var(--sh-padding-left));
+  }
+}
+
+@media (min-width: 641px) and (max-width: 960px) {
+  .sh-hide-tablet { display: none !important; }
+}
+
+@media (max-width: 640px) {
+  .sh-container,
+  .layout-container {
+    max-width: var(--sh-container-max-width-mobile, var(--sh-container-max-width-tablet, var(--sh-container-max-width, var(--sh-site-max-width, 1200px))));
+    margin-top: var(--sh-margin-top-mobile, var(--sh-margin-top-tablet, var(--sh-margin-top, 0)));
+    margin-right: var(--sh-margin-right-mobile, var(--sh-margin-right-tablet, var(--sh-margin-right, auto)));
+    margin-bottom: var(--sh-margin-bottom-mobile, var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0)));
+    margin-left: var(--sh-margin-left-mobile, var(--sh-margin-left-tablet, var(--sh-margin-left, auto)));
+    padding-top: var(--sh-padding-top-mobile, var(--sh-padding-top-tablet, var(--sh-padding-top, 0)));
+    padding-right: var(--sh-padding-right-mobile, var(--sh-padding-right-tablet, var(--sh-padding-right, 0)));
+    padding-bottom: var(--sh-padding-bottom-mobile, var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0)));
+    padding-left: var(--sh-padding-left-mobile, var(--sh-padding-left-tablet, var(--sh-padding-left, 0)));
+  }
+
+  .sh-row,
+  .layout-row {
+    max-width: var(--sh-row-max-width-mobile, var(--sh-row-max-width-tablet, var(--sh-row-max-width, var(--sh-site-max-width, 1200px))));
+    flex-direction: var(--sh-direction-mobile, var(--sh-direction-tablet, var(--sh-direction, row)));
+    flex-wrap: var(--sh-wrap-mobile, var(--sh-wrap-tablet, var(--sh-wrap, nowrap)));
+    gap: var(--sh-gap-mobile, var(--sh-gap-tablet, var(--sh-gap, 24px)));
+    row-gap: var(--sh-row-gap-mobile, var(--sh-row-gap-tablet, var(--sh-row-gap, var(--sh-gap-mobile, var(--sh-gap-tablet, var(--sh-gap, 24px))))));
+    column-gap: var(--sh-column-gap-mobile, var(--sh-column-gap-tablet, var(--sh-column-gap, var(--sh-gap-mobile, var(--sh-gap-tablet, var(--sh-gap, 24px))))));
+    justify-content: var(--sh-justify-mobile, var(--sh-justify-tablet, var(--sh-justify, flex-start)));
+    align-items: var(--sh-align-items-mobile, var(--sh-align-items-tablet, var(--sh-align-items, stretch)));
+    align-content: var(--sh-align-content-mobile, var(--sh-align-content-tablet, var(--sh-align-content, normal)));
+    margin-top: var(--sh-margin-top-mobile, var(--sh-margin-top-tablet, var(--sh-margin-top, 0)));
+    margin-right: var(--sh-margin-right-mobile, var(--sh-margin-right-tablet, var(--sh-margin-right, auto)));
+    margin-bottom: var(--sh-margin-bottom-mobile, var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0)));
+    margin-left: var(--sh-margin-left-mobile, var(--sh-margin-left-tablet, var(--sh-margin-left, auto)));
+    padding-top: var(--sh-padding-top-mobile, var(--sh-padding-top-tablet, var(--sh-padding-top, 0)));
+    padding-right: var(--sh-padding-right-mobile, var(--sh-padding-right-tablet, var(--sh-padding-right, 0)));
+    padding-bottom: var(--sh-padding-bottom-mobile, var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0)));
+    padding-left: var(--sh-padding-left-mobile, var(--sh-padding-left-tablet, var(--sh-padding-left, 0)));
+  }
+
+  .sh-col,
+  .layout-column {
+    flex-basis: var(--sh-basis-mobile, var(--sh-basis-tablet, var(--sh-basis, auto)));
+    flex-grow: var(--sh-grow-mobile, var(--sh-grow-tablet, var(--sh-grow, 0)));
+    flex-shrink: var(--sh-shrink-mobile, var(--sh-shrink-tablet, var(--sh-shrink, 1)));
+    order: var(--sh-order-mobile, var(--sh-order-tablet, var(--sh-order, 0)));
+    align-self: var(--sh-align-self-mobile, var(--sh-align-self-tablet, var(--sh-align-self, auto)));
+    margin-top: var(--sh-margin-top-mobile, var(--sh-margin-top-tablet, var(--sh-margin-top, 0)));
+    margin-right: var(--sh-margin-right-mobile, var(--sh-margin-right-tablet, var(--sh-margin-right, 0)));
+    margin-bottom: var(--sh-margin-bottom-mobile, var(--sh-margin-bottom-tablet, var(--sh-margin-bottom, 0)));
+    margin-left: var(--sh-margin-left-mobile, var(--sh-margin-left-tablet, var(--sh-margin-left, 0)));
+    padding-top: var(--sh-padding-top-mobile, var(--sh-padding-top-tablet, var(--sh-padding-top, 0)));
+    padding-right: var(--sh-padding-right-mobile, var(--sh-padding-right-tablet, var(--sh-padding-right, 0)));
+    padding-bottom: var(--sh-padding-bottom-mobile, var(--sh-padding-bottom-tablet, var(--sh-padding-bottom, 0)));
+    padding-left: var(--sh-padding-left-mobile, var(--sh-padding-left-tablet, var(--sh-padding-left, 0)));
+  }
+
+  .sh-responsive-text {
+    font-size: var(--sh-font-size-mobile, var(--sh-font-size-tablet, var(--sh-font-size)));
+    line-height: var(--sh-line-height-mobile, var(--sh-line-height-tablet, var(--sh-line-height)));
+    text-align: var(--sh-text-align-mobile, var(--sh-text-align-tablet, var(--sh-text-align)));
+  }
+
+  .sh-responsive-box {
+    margin-top: var(--sh-margin-top-mobile, var(--sh-margin-top-tablet, var(--sh-margin-top)));
+    margin-right: var(--sh-margin-right-mobile, var(--sh-margin-right-tablet, var(--sh-margin-right)));
+    margin-bottom: var(--sh-margin-bottom-mobile, var(--sh-margin-bottom-tablet, var(--sh-margin-bottom)));
+    margin-left: var(--sh-margin-left-mobile, var(--sh-margin-left-tablet, var(--sh-margin-left)));
+    padding-top: var(--sh-padding-top-mobile, var(--sh-padding-top-tablet, var(--sh-padding-top)));
+    padding-right: var(--sh-padding-right-mobile, var(--sh-padding-right-tablet, var(--sh-padding-right)));
+    padding-bottom: var(--sh-padding-bottom-mobile, var(--sh-padding-bottom-tablet, var(--sh-padding-bottom)));
+    padding-left: var(--sh-padding-left-mobile, var(--sh-padding-left-tablet, var(--sh-padding-left)));
+  }
+
+  .sh-hide-mobile { display: none !important; }
+}

@@ -1,0 +1,12 @@
+<!-- @cms
+name: Callout
+category: Components
+description: A quiet inset note with an editable heading and a Markdown default slot.
+fields:
+  heading:
+    type: text
+-->
+<aside class="callout">
+  <h2 @text="heading">A simple component</h2>
+  <div class="callout-body"><slot>Write the callout text here.</slot></div>
+</aside>
